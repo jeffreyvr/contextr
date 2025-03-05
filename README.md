@@ -49,7 +49,7 @@ $check->reason();       // "Contains promotional content and suspicious link"
 Determine if the sentiment is `positive`, `negative` or `neutral`.
 
 ```php
-$result = $contextr->sentiment(
+$check = $contextr->sentiment(
     text: 'This blu ray was great, too bad it did not include Project A.',
     withReason: true,
     context: [
@@ -58,9 +58,9 @@ $result = $contextr->sentiment(
     ]
 );
 
-$sentiment = $result->sentiment(); // neutral (string)
-$confidence = $result->confidence(); // 0.75 (float)
-$reason = $result->reason(); // "Expresses enjoyment of the blu ray but also disappointment about the absence of a specific content." (string)
+$sentiment = $check->sentiment(); // neutral (string)
+$confidence = $check->confidence(); // 0.75 (float)
+$reason = $check->reason(); // "Expresses enjoyment of the blu ray but also disappointment about the absence of a specific content." (string)
 ```
 
 ##### Moderation
@@ -68,7 +68,7 @@ $reason = $result->reason(); // "Expresses enjoyment of the blu ray but also dis
 Determine if user comments violate moderation rules.
 
 ```php
-$result = $contextr->moderation(
+$check = $contextr->moderation(
     text: 'These morons don’t even know how to kick a ball properly!',
     withReason: true,
     rules: ['hate speech', 'profanity', 'civility'],
@@ -78,10 +78,10 @@ $result = $contextr->moderation(
     ]
 );
 
-$violates = $result->violates();     // true (boolean)
-$confidence = $result->confidence(); // 0.75 (float)
-$violations = $result->violations(); // ['profanity', 'civility'] (array)
-$reason = $result->reason();         // "Contains insulting language and lacks respectful tone"
+$violates = $check->violates();     // true (boolean)
+$confidence = $check->confidence(); // 0.75 (float)
+$violations = $check->violations(); // ['profanity', 'civility'] (array)
+$reason = $check->reason();         // "Contains insulting language and lacks respectful tone"
 ```
 
 ## Hosted version ✨
