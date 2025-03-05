@@ -1,16 +1,16 @@
 <div align="center">
-  <picture>
+    <picture>
     <source
     srcset="./art/logo-light.svg"
     media="(prefers-color-scheme: dark)"
     height="50"
     />
     <img
-    src="./images/logo-dark.svg"
+    src="./art/logo-dark.svg"
     alt="contextr logo"
     height="50"
     />
-  </picture>
+    </picture>
 
   <h3 align="center">contextr</h3>
 </div>
