@@ -58,9 +58,9 @@ $check = $contextr->sentiment(
     ]
 );
 
-$sentiment = $check->sentiment(); // neutral (string)
-$confidence = $check->confidence(); // 0.75 (float)
-$reason = $check->reason(); // "Expresses enjoyment of the blu ray but also disappointment about the absence of a specific content." (string)
+$check->sentiment();    // neutral (string)
+$check->confidence();   // 0.75 (float)
+$check->reason();       // "Expresses enjoyment of the blu ray but also disappointment about the absence of a specific content." (string)
 ```
 
 ##### Moderation
@@ -78,13 +78,31 @@ $check = $contextr->moderation(
     ]
 );
 
-$violates = $check->violates();     // true (boolean)
-$confidence = $check->confidence(); // 0.75 (float)
-$violations = $check->violations(); // ['profanity', 'civility'] (array)
-$reason = $check->reason();         // "Contains insulting language and lacks respectful tone"
+$check->violates();     // true (boolean)
+$check->confidence();   // 0.75 (float)
+$check->violations();   // ['profanity', 'civility'] (array)
+$check->reason();       // "Contains insulting language and lacks respectful tone"
 ```
 
-## Hosted version ✨
+##### AI
+
+```php
+$check = $contextr->ai(
+    text: 'The strategic intricacies of modern football necessitate a comprehensive understanding of player positioning, tactical adaptability, and cohesive team synergy to achieve superior performance outcomes.',
+    withReason: true,
+    context: [
+        'platform' => 'football fan forum',
+        'topic' => 'Post-match discussion: Manchester United vs. Liverpool',
+        'user_history' => 'New account, posted 5 similar analyses in 24 hours'
+    ]
+);
+
+$check->ai();           // true (boolean)
+$check->confidence();   // 0.92 (float)
+$check->reason();       // "Overly polished language and generic analysis typical of AI-generated text, especially given the user's pattern of similar posts."
+```
+
+## ✨ Hosted version ✨
 
 Want a hosted version of Contextr? It’s in the works! Sign up for updates to be the first to know when it’s ready—no setup, just AI-powered analysis at your fingertips. [Join the waitlist](https://contextr.dev).
 
