@@ -86,6 +86,8 @@ $check->reason();       // "Contains insulting language and lacks respectful ton
 
 ##### AI
 
+Determine the likelyhood that a text is AI-generated.
+
 ```php
 $check = $contextr->ai(
     text: 'The strategic intricacies of modern football necessitate a comprehensive understanding of player positioning, tactical adaptability, and cohesive team synergy to achieve superior performance outcomes.',
