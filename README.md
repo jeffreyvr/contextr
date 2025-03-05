@@ -14,15 +14,13 @@ composer require contextr/contextr
 
 First, you need to setup your instance of Contextr.
 
-If you like to use OpenAI for  reasoning, you can use:
+You can use [OpenAI](http://platform.openai.com/) or [Grok](https://x.ai/api) for reasoning.
 
 ```php
 $contextr = new Contextr\Contextr(provider: new Contextr\Providers\OpenAi(apiKey: 'API_KEY'));
-```
 
-For Grok, use:
+// Or for Grok:
 
-```php
 $contextr = new Contextr\Contextr(provider: new Contextr\Providers\Grok(apiKey: 'API_KEY'));
 ```
 
@@ -86,14 +84,13 @@ $violations = $result->violations(); // ['profanity', 'civility'] (array)
 $reason = $result->reason();         // "Contains insulting language and lacks respectful tone"
 ```
 
-## Contribute
+## Hosted version ✨
 
-TODO
+Want a hosted version of Contextr? It’s in the works! Sign up for updates to be the first to know when it’s ready—no setup, just AI-powered analysis at your fingertips. [Join the waitlist](https://contextr.dev).
 
-## Hosted version
-
-TODO
+## Contributors
+* [Jeffrey van Rossum](https://github.com/jeffreyvr)
+* [All contributors](https://github.com/jeffreyvr/wp-settings/graphs/contributors)
 
 ## License
-
-TODO
+MIT. Please see the [License File](/LICENSE) for more information.
