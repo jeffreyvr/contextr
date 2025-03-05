@@ -3,12 +3,12 @@
     <source
     srcset="./art/logo-light.svg"
     media="(prefers-color-scheme: dark)"
-    width="125"
+    height="50"
     />
     <img
     src="./images/logo-dark.svg"
     alt="contextr logo"
-    width="125"
+    height="50"
     />
   </picture>
 
