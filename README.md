@@ -110,7 +110,7 @@ Want a hosted version of Contextr? It’s in the works! Sign up for updates to b
 
 ## Contributors
 * [Jeffrey van Rossum](https://github.com/jeffreyvr)
-* [All contributors](https://github.com/jeffreyvr/wp-settings/graphs/contributors)
+* [All contributors](https://github.com/contextr-dev/contextr/graphs/contributors)
 
 ## License
 MIT. Please see the [License File](/LICENSE) for more information.
