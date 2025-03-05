@@ -36,7 +36,7 @@ composer require contextr-dev/contextr
 
 First, you need to setup your instance of Contextr.
 
-You can use [OpenAI](http://platform.openai.com/) or [Grok](https://x.ai/api) for reasoning.
+You can use [OpenAI](http://platform.openai.com/) or [Grok](https://x.ai/api) as AI providers.
 
 ```php
 $contextr = new Contextr\Contextr(provider: new Contextr\Providers\OpenAi(apiKey: 'API_KEY'));
@@ -60,7 +60,7 @@ $check = $contextr->spam(
     ]
 );
 
-$check->data();         // Full result array
+$check->data();         // full result array
 $check->spam();         // true (boolean)
 $check->confidence();   // 0.95 (float)
 $check->reason();       // "Contains promotional content and suspicious link"
@@ -80,6 +80,7 @@ $check = $contextr->sentiment(
     ]
 );
 
+$check->data();         // full result array
 $check->sentiment();    // neutral (string)
 $check->confidence();   // 0.75 (float)
 $check->reason();       // "Expresses enjoyment of the blu ray but also disappointment about the absence of a specific content." (string)
@@ -100,6 +101,7 @@ $check = $contextr->moderation(
     ]
 );
 
+$check->data();         // full result array
 $check->violates();     // true (boolean)
 $check->confidence();   // 0.75 (float)
 $check->violations();   // ['profanity', 'civility'] (array)
@@ -121,6 +123,7 @@ $check = $contextr->ai(
     ]
 );
 
+$check->data();         // full result array
 $check->ai();           // true (boolean)
 $check->confidence();   // 0.92 (float)
 $check->reason();       // "Overly polished language and generic analysis typical of AI-generated text, especially given the user's pattern of similar posts."
@@ -128,7 +131,7 @@ $check->reason();       // "Overly polished language and generic analysis typica
 
 ## ✨ Hosted version ✨
 
-Want a hosted version of Contextr? It’s in the works! Sign up for updates to be the first to know when it’s ready—no setup, just AI-powered analysis at your fingertips. [Join the waitlist](https://contextr.dev).
+Want a hosted version of Contextr? It’s in the works! Sign up for updates to be the first to know when it’s ready. [Join the waitlist](https://contextr.dev).
 
 ## Contributors
 * [Jeffrey van Rossum](https://github.com/jeffreyvr)
