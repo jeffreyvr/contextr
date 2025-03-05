@@ -1,4 +1,19 @@
-# Contextr
+<div align="center">
+  <picture>
+    <source
+    srcset="./art/logo-light.svg"
+    media="(prefers-color-scheme: dark)"
+    width="125"
+    />
+    <img
+    src="./images/logo-dark.svg"
+    alt="contextr logo"
+    width="125"
+    />
+  </picture>
+
+  <h3 align="center">contextr</h3>
+</div>
 
 Use AI as your intelligent assistant to analyze text for spam, sentiment, and moderation, delivering precise insights with confidence scores and detailed reasoning.
 
@@ -7,7 +22,7 @@ Use AI as your intelligent assistant to analyze text for spam, sentiment, and mo
 ### Installation
 
 ```bash
-composer require contextr/contextr
+composer require contextr-dev/contextr
 ```
 
 ### Setup
