@@ -1,6 +1,6 @@
 <?php
 
-namespace Contextr;
+namespace Contextr\Response;
 
 class Response
 {
@@ -14,21 +14,35 @@ class Response
         public ?string $data,
         public mixed $sourceResponse,
         bool $success = true,
-        ?array $error = null
+        ?array $error = null,
+        protected ?array $responseMap = null
     ) {
         $this->success = $success;
         $this->error = $error;
-
         $this->decodedData = ($data && $success) ? json_decode($data, true) : null;
 
-        if ($success && $data && $this->decodedData === null && json_last_error() !== JSON_ERROR_NONE) {
+        if ($success && $this->decodedData) {
+            $this->decodedData = $this->normalizeResponse($this->decodedData);
+        } elseif ($success && $this->decodedData === null && json_last_error() !== JSON_ERROR_NONE) {
             $this->success = false;
-            $this->error = [
-                'message' => 'Failed to decode JSON response: '.json_last_error_msg(),
-                'code' => json_last_error(),
-                'type' => 'JsonDecodeException',
-            ];
+
+            $this->error = ['message' => 'Failed to decode JSON', 'code' => json_last_error()];
         }
+    }
+
+    protected function normalizeResponse(array $data): array
+    {
+        if (! $this->responseMap) {
+            return $data;
+        }
+
+        $normalized = [];
+
+        foreach ($this->responseMap as $type) {
+            $normalized[$type->name] = $type->normalize($data[$type->name] ?? $type->default);
+        }
+
+        return $normalized;
     }
 
     public function success(): bool

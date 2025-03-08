@@ -2,7 +2,8 @@
 
 namespace Contextr\Tests\Support;
 
-use Contextr\Response;
+use Contextr\Checks\Check;
+use Contextr\Response\Response;
 use Contextr\Providers\Provider;
 
 class MockProvider implements Provider
@@ -14,7 +15,7 @@ class MockProvider implements Provider
         $this->mockResponses = $mockResponses;
     }
 
-    public function analyze(string $prompt): Response
+    public function analyze(Check $check): Response
     {
         $data = array_shift($this->mockResponses);
 
@@ -22,6 +23,6 @@ class MockProvider implements Provider
             return new Response(data: null, sourceResponse: null, success: false, error: ['code' => '1', 'message' => 'Something went wrong']);
         }
 
-        return new Response(data: json_encode($data), sourceResponse: null, success: true);
+        return new Response(responseMap: $check->responseMap, data: json_encode($data), sourceResponse: null, success: true);
     }
 }

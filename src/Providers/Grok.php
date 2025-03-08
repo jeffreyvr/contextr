@@ -2,7 +2,7 @@
 
 namespace Contextr\Providers;
 
-use Contextr\Response;
+use Contextr\Response\Response;
 use Exception;
 use GrokPHP\Client\Clients\GrokClient;
 use GrokPHP\Client\Config\ChatOptions;

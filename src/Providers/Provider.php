@@ -2,9 +2,10 @@
 
 namespace Contextr\Providers;
 
-use Contextr\Response;
+use Contextr\Checks\Check;
+use Contextr\Response\Response;
 
 interface Provider
 {
-    public function analyze(string $prompt): Response;
+    public function analyze(Check $check): Response;
 }

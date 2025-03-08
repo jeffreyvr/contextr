@@ -2,30 +2,44 @@
 
 namespace Contextr\Checks;
 
+use Contextr\Response\Types\ArrayType;
+use Contextr\Response\Types\BoolType;
+use Exception;
+
 class Moderation extends Check
 {
     public string $subject = 'moderation';
 
     public string $baseInstruction = 'Check for inappropriate content.';
 
-    public string $responseInstruction = 'Return JSON object with: \"violation\" (boolean), \"confidence\" (float 0.00-1.00).';
+    public string $rules = 'profanity, hate speech, violence';
 
-    public ?string $rules;
+    public bool $violations = false;
 
-    public function rules(string|array $rules)
+    protected function finishResponseMap(): void
     {
-        $this->rules = implode(', ', $rules);
+        $this->responseMap = array_merge([new BoolType(name: 'violates', default: '')], $this->responseMap);
+    }
 
-        $this->baseInstruction = $this->baseInstruction.'Look for: '.$this->rules;
+    public function rules(string|array $rules, bool $merge = false): self
+    {
+        if ($merge && is_string($this->rules)) {
+            $existingRules = explode(', ', $this->rules);
+            $rules = array_merge($existingRules, (array) $rules);
+        }
+
+        $this->rules = implode(', ', (array) $rules);
 
         return $this;
     }
 
     public function withViolations()
     {
-        if ($this->rules) {
-            $this->responseInstruction = $this->responseInstruction.' Also include the violations in \"violations\" (array using values '.$this->rules.').';
+        if (! $this->rules) {
+            throw new Exception('Violations can only be returned if rules are set.');
         }
+
+        $this->responseMap[] = new ArrayType(name: 'violations', default: [], constraints: ['in' => explode(', ', $this->rules)]);
 
         return $this;
     }

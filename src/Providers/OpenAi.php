@@ -2,7 +2,8 @@
 
 namespace Contextr\Providers;
 
-use Contextr\Response;
+use Contextr\Checks\Check;
+use Contextr\Response\Response;
 use Exception;
 use OpenAI as OpenAIClient;
 
@@ -19,11 +20,11 @@ class OpenAi implements Provider
         //
     }
 
-    public function analyze(string $prompt): Response
+    public function analyze(Check $check): Response
     {
         $client = OpenAIClient::client($this->apiKey, $this->organization, $this->project);
 
-        $messages = [['role' => 'system', 'content' => $prompt]];
+        $messages = [['role' => 'system', 'content' => $check->prompt]];
 
         try {
             $result = $client->chat()->create([
@@ -33,7 +34,7 @@ class OpenAi implements Provider
                 'temperature' => $this->temperature,
             ]);
 
-            return new Response(data: $result->choices[0]->message->content, sourceResponse: $result, success: true);
+            return new Response(data: $result->choices[0]->message->content, sourceResponse: $result, success: true, responseMap: $check->responseMap);
         } catch (Exception $e) {
             if ($this->throwExceptions) {
                 throw $e;
