@@ -21,8 +21,21 @@ Use AI as your intelligent assistant to analyze text for spam, sentiment, and mo
 
 ### Installation
 
+Add satis.vanrossum.dev to your composer repositories.
+
+```
+"repositories": [
+    {
+        "type": "composer",
+        "url": "https://satis.vanrossum.dev"
+    }
+],
+```
+
+Then you can run:
+
 ```bash
-composer require contextr-dev/contextr
+composer require jeffreyvr/contextr
 ```
 
 ### Setup
@@ -70,7 +83,7 @@ $check = $contextr->sentiment()
         'product' => 'Jackie Chan Collection Vol 1983',
         'category' => 'Blu ray'
     ])
-    ->withReasoning(language: 'Cantonese')
+    ->withReasoning()
     ->analyze();
 
 $check->data();         // full result array
