@@ -2,12 +2,13 @@
 
 namespace Contextr\Providers;
 
-use Contextr\Response\Response;
 use Exception;
+use Contextr\Checks\Check;
+use Contextr\Response\Response;
+use GrokPHP\Client\Enums\Model;
+use GrokPHP\Client\Config\GrokConfig;
 use GrokPHP\Client\Clients\GrokClient;
 use GrokPHP\Client\Config\ChatOptions;
-use GrokPHP\Client\Config\GrokConfig;
-use GrokPHP\Client\Enums\Model;
 
 class Grok implements Provider
 {
@@ -20,11 +21,11 @@ class Grok implements Provider
         //
     }
 
-    public function analyze(string $prompt): Response
+    public function analyze(Check $check): Response
     {
         $client = new GrokClient(new GrokConfig($this->apiKey));
 
-        $messages = [['role' => 'system', 'content' => $prompt]];
+        $messages = [['role' => 'system', 'content' => $check->prompt]];
 
         try {
             $options = new ChatOptions(model: $this->model, temperature: $this->temperature, stream: false);
@@ -35,7 +36,7 @@ class Grok implements Provider
             // Currently need to use this dirty trick.
             $content = preg_replace('/^```json|```$/', '', $content);
 
-            return new Response(data: $content, sourceResponse: $result, success: true);
+            return new Response(responseMap: $check->responseMap, data: $content, sourceResponse: $result, success: true);
         } catch (Exception $e) {
             if ($this->throwExceptions) {
                 throw $e;

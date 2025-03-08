@@ -15,13 +15,6 @@
   <h3 align="center">contextr</h3>
 </div>
 
-<p align="center">
-<a href="https://github.com/contextr-dev/contextr/actions"><img src="https://github.com/contextr-dev/contextr/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/contextr/contextr"><img src="https://img.shields.io/packagist/dt/contextr/contextr" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/contextr/contextr"><img src="https://img.shields.io/packagist/v/contextr/contextr" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/contextr/contextr"><img src="https://img.shields.io/packagist/l/contextr/contextr" alt="License"></a>
-</p>
-
 Use AI as your intelligent assistant to analyze text for spam, sentiment, and moderation, delivering precise insights with confidence scores and detailed reasoning.
 
 ## Usage
