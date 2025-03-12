@@ -10,19 +10,19 @@ class Sentiment extends Check
 
     public string $baseInstruction = 'Determine the sentiment of the text.';
 
-    public array $indicators = ['positive', 'negative', 'neutral'];
+    public array $sentiments = ['positive', 'negative', 'neutral'];
 
     protected function finishResponseMap(): void
     {
-        $this->responseMap = array_merge([new StringType(name: 'sentiment', default: '', constraints: ['in' => $this->indicators])], $this->responseMap);
+        $this->responseMap = array_merge([new StringType(name: 'sentiment', default: '', constraints: ['in' => $this->sentiments])], $this->responseMap);
     }
 
     public function indicators(array $indicators, bool $merge = false)
     {
         if ($merge) {
-            $this->indicators = array_merge($this->indicators, $indicators);
+            $this->sentiments = array_merge($this->sentiments, $indicators);
         } else {
-            $this->indicators = $indicators;
+            $this->sentiments = $indicators;
         }
 
         return $this;

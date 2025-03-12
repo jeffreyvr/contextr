@@ -14,7 +14,7 @@ class Grok implements Provider
 {
     public function __construct(
         public string $apiKey,
-        public Model $model = Model::GROK_2_1212,
+        public Model $model = Model::GROK_2_LATEST,
         public float $temperature = 0.1,
         public bool $throwExceptions = false
     ) {

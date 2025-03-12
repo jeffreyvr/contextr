@@ -15,32 +15,25 @@
   <h3 align="center">contextr</h3>
 </div>
 
+<p align="center">
+<a href="https://packagist.org/packages/jeffreyvanrossum/contextr"><img src="https://img.shields.io/packagist/dt/jeffreyvanrossum/contextr" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/jeffreyvanrossum/contextr"><img src="https://img.shields.io/packagist/v/jeffreyvanrossum/contextr" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/jeffreyvanrossum/contextr"><img src="https://img.shields.io/packagist/l/jeffreyvanrossum/contextr" alt="License"></a>
+</p>
+
 Use AI as your intelligent assistant to analyze text for spam, sentiment, and moderation, delivering precise insights with confidence scores and detailed reasoning.
 
 ## Usage
 
 ### Installation
 
-Add satis.vanrossum.dev to your composer repositories.
-
-```
-"repositories": [
-    {
-        "type": "composer",
-        "url": "https://satis.vanrossum.dev"
-    }
-],
-```
-
-Then you can run:
-
 ```bash
-composer require jeffreyvr/contextr
+composer require jeffreyvanrossum/contextr
 ```
 
 ### Setup
 
-First, you need to setup your instance of Contextr.
+First, you need to setup your instance of contextr.
 
 You can use [OpenAI](http://platform.openai.com/) or [Grok](https://x.ai/api) as AI providers.
 
@@ -135,6 +128,12 @@ $check->ai();           // true (boolean)
 $check->confidence();   // 0.92 (float)
 $check->reasoning();    // "Overly polished language and generic analysis typical of AI-generated text, especially given the user's pattern of similar posts."
 ```
+
+## contextr as a service? 👀
+
+Would you like this API, but as a hosted service, with a nice interface to define custom base templates?
+
+*[Join the waitlist](https://contextr.dev)*
 
 ## Contributors
 * [Jeffrey van Rossum](https://github.com/jeffreyvr)
