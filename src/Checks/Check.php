@@ -43,12 +43,26 @@ abstract class Check
         return $this;
     }
 
+    public function withCustomBaseInstruction(string $instruction): self
+    {
+        $this->baseInstruction = $instruction;
+
+        return $this;
+    }
+
+    public function withAdditionalInstruction(string $instruction): self
+    {
+        $this->baseInstruction = $this->baseInstruction. ' ' .$instruction;
+
+        return $this;
+    }
+
     public function buildPrompt(): self
     {
         $context = $this->contextString();
         $responseInstruction = $this->responseInstructionString();
 
-        $this->prompt = "Analyze for {$this->subject}: \"{$this->text}\". {$context} {$this->baseInstruction} {$responseInstruction}";
+        $this->prompt = "Analyze for {$this->subject}: \"{$this->text}\". {$context} Instruction: {$this->baseInstruction}. Response instruction: {$responseInstruction}";
 
         return $this;
     }
