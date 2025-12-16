@@ -30,6 +30,9 @@ class Moderation extends Check
 
         $this->rules = implode(', ', (array) $rules);
 
+        $ruleCount = count($rules);
+        $this->withAdditionalInstruction('Evaluate only these '.$ruleCount.' rules: ' . $this->rules);
+
         return $this;
     }
 

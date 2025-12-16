@@ -70,14 +70,18 @@ it('flags moderation violations', function () {
         'reasoning' => 'Contains insults and rude tone'
     ]];
 
-    $response = $this->contextr->moderation(
+    $check = $this->contextr->moderation(
         text: 'These idiots cant play worth a damn!',
         context: ['platform' => 'forum']
     )
         ->rules(['hate speech', 'profanity', 'civility'])
         ->withReasoning()
-        ->withViolations()
-        ->analyze();
+        ->withViolations();
+
+    $response = $check->analyze();
+
+    expect($check->prompt)
+        ->toContain('Evaluate only these', 'hate speech', 'profanity', 'civility');
 
     expect($response->violates())->toBeTrue();
     expect($response->confidence())->toBe(0.85);
