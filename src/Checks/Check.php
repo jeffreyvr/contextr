@@ -62,7 +62,7 @@ abstract class Check
         $context = $this->contextString();
         $responseInstruction = $this->responseInstructionString();
 
-        $this->prompt = "Analyze for {$this->subject}: \"{$this->text}\". {$context} Instruction: {$this->baseInstruction}. Response instruction: {$responseInstruction}";
+        $this->prompt = "Analyze for {$this->subject}:\n\"{$this->text}\".\n{$context}\nInstruction: {$this->baseInstruction}.\nResponse instruction: {$responseInstruction}";
 
         return $this;
     }
@@ -94,10 +94,10 @@ abstract class Check
         $parts = [];
 
         foreach ($map as $type) {
-            $parts[] = "\"{$type->name}\" ({$type->toInstruction()})";
+            $parts[] = "- \"{$type->name}\" ({$type->toInstruction()})";
         }
 
-        return 'Return a JSON object with: '.implode(', ', $parts).'.';
+        return "Return a JSON object with:\n".implode("\n", $parts);
     }
 
     public function when(mixed $condition, callable $callback)
