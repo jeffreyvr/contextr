@@ -52,7 +52,7 @@ abstract class Check
 
     public function withAdditionalInstruction(string $instruction): self
     {
-        $this->baseInstruction = $this->baseInstruction. ' ' .$instruction;
+        $this->baseInstruction = $this->baseInstruction.' '.$instruction;
 
         return $this;
     }

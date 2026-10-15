@@ -2,13 +2,13 @@
 
 namespace Contextr\Providers;
 
-use Exception;
 use Contextr\Checks\Check;
 use Contextr\Response\Response;
-use GrokPHP\Client\Enums\Model;
-use GrokPHP\Client\Config\GrokConfig;
+use Exception;
 use GrokPHP\Client\Clients\GrokClient;
 use GrokPHP\Client\Config\ChatOptions;
+use GrokPHP\Client\Config\GrokConfig;
+use GrokPHP\Client\Enums\Model;
 
 class Grok implements Provider
 {
