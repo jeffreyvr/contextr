@@ -40,10 +40,6 @@ function openAiModelNotFound(string $model): ErrorException
     );
 }
 
-/**
- * @param  array<int, CreateResponse|ErrorException>  $responses
- * @return array{0: ClockedOpenAi, 1: ClientFake}
- */
 function openAiProvider(
     string $model,
     array $responses,
@@ -64,9 +60,6 @@ function openAiProvider(
     return [$provider, $client];
 }
 
-/**
- * @return array<int, array<string, mixed>>
- */
 function openAiSent(ClientFake $client): array
 {
     $requests = (new ReflectionProperty(ClientFake::class, 'requests'))->getValue($client);

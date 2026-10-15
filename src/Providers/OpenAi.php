@@ -13,28 +13,10 @@ use OpenAI\Exceptions\ErrorException;
 
 class OpenAi implements Provider
 {
-    /**
-     * Recommended replacement for the GPT-4o, GPT-4o mini, GPT-4.1, and
-     * GPT-4.1 mini models OpenAI removes on 2027-01-14.
-     *
-     * @see https://developers.openai.com/api/docs/deprecations
-     * @see https://help.openai.com/en/articles/20001600-migrating-from-gpt-4x-to-gpt-6-luna
-     */
     public const REPLACEMENT_MODEL = 'gpt-6-luna';
 
-    /**
-     * UTC instant when RETIRED_MODELS start being sent as REPLACEMENT_MODEL.
-     * OpenAI's shutdown date has no time of day; midnight UTC is the start of that date.
-     */
     public const RETIRED_AT = '2027-01-14 00:00:00 UTC';
 
-    /**
-     * Exact ids => replacement. Stable aliases are included because callers
-     * (and this provider's previous default) pass those, and they point at the
-     * dated snapshots named on OpenAI's deprecations page.
-     *
-     * @var array<string, string>
-     */
     public const RETIRED_MODELS = [
         'gpt-4o' => self::REPLACEMENT_MODEL,
         'gpt-4o-2024-08-06' => self::REPLACEMENT_MODEL,
@@ -124,9 +106,6 @@ class OpenAi implements Provider
         return new Response(data: $result->choices[0]->message->content, sourceResponse: $result, success: true, responseMap: $check->responseMap);
     }
 
-    /**
-     * @return array<string, mixed>
-     */
     private function parameters(Check $check, string $model): array
     {
         $parameters = [
@@ -136,9 +115,7 @@ class OpenAi implements Provider
             'temperature' => $this->temperature,
         ];
 
-        // Luna defaults to reasoning effort "medium", which rejects temperature.
-        // OpenAI's GPT-4.x migration guide says to start at "none", the only
-        // effort that still accepts temperature.
+        // gpt-6-luna rejects temperature unless reasoning effort is none.
         if ($model === self::REPLACEMENT_MODEL) {
             $parameters['reasoning_effort'] = 'none';
         }
