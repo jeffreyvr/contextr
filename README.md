@@ -45,6 +45,21 @@ $contextr = new Contextr\Contextr(provider: new Contextr\Providers\OpenAi(apiKey
 $contextr = new Contextr\Contextr(provider: new Contextr\Providers\Grok(apiKey: 'API_KEY'));
 ```
 
+### Model
+
+The OpenAI provider defaults to `gpt-6-luna`. That is OpenAI's recommended replacement for GPT-4o, GPT-4o mini, GPT-4.1, and GPT-4.1 mini, which shut down on January 14, 2027. Pass `model` to select a different id.
+
+From 2027-01-14 00:00:00 UTC, these ids are sent as `gpt-6-luna`:
+
+- `gpt-4o`, `gpt-4o-2024-08-06`, `gpt-4o-2024-11-20`
+- `gpt-4o-mini`, `gpt-4o-mini-2024-07-18`
+- `gpt-4.1`, `gpt-4.1-2025-04-14`
+- `gpt-4.1-mini`, `gpt-4.1-mini-2025-04-14`
+
+Until that instant an explicit id is sent unchanged. If OpenAI responds that one of those ids does not exist (`model_not_found`), the request is retried once with `gpt-6-luna`. Any other model id is left as-is, including when that call returns an error.
+
+Calls that use `gpt-6-luna` also send `reasoning_effort: none`. Luna's default effort is `medium`, which rejects `temperature`, and OpenAI's GPT-4.x migration guide says to start at `none`. Classifications, latency, and cost can differ from GPT-4o mini. Fine-tuned ids such as `ft:gpt-4o-mini-...` are not rewritten.
+
 ### Examples
 
 ##### Spam
